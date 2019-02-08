@@ -1,20 +1,34 @@
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
+var http = require('http');
 var app = express();
+var port = normalizePort(process.env.PORT || '3000');
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + "/public"));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.get("/node", function (req, res) {
+    res.status(200).send("Node");
+});
 
-module.exports = app;
+app.get("/*", function (req, res) {
+    res.sendFile("index.html", {root: "./public"});
+});
+
+var server = http.createServer(app);
+server.listen(port);
+
+
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
