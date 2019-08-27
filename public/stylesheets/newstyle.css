@@ -1,0 +1,92 @@
+html {
+    box-sizing: border-box;
+    color: white;
+}
+
+/* body */
+
+body {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    width: 100%;
+    background: #121212;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.part {
+
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+#apps {
+    flex: 39%;
+    display: flex;
+    flex-direction: column;
+}
+
+#general {
+    flex: 60%;
+}
+
+.card {
+    flex: 30%;
+    margin: 2em;
+    border: solid 0.09rem #494949;
+    position: relative;
+    background: #1D1D1D;
+    transition: all .5s;
+}
+
+#apps .card:hover {
+    background: rgba(255,255,255,0.12);
+    border: solid 0.09rem rgba(255,255,255,0.25);
+}
+.img-container {
+    padding: 2.5%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-right: solid 0.09rem #494949;
+}
+
+.card img {
+    height: 100%;
+    border-radius: 10%;
+    max-width: 512px;
+    min-width: 30%;
+    size: auto;
+}
+
+h1 {
+    color: white;
+    margin: auto;
+    width: fit-content;
+}
+
+@media screen and (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+    }
+
+    #apps .card {
+        background: red;
+        height: 50px;
+    }
+
+    .img-container {
+        height: 180%;
+    }
+
+    .card img {
+    }
+}

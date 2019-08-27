@@ -9,6 +9,10 @@ app.get("/node", function (req, res) {
     res.status(200).send("Node");
 });
 
+app.get("/applications", function (req, res) {
+    res.sendFile("apps.html", {root: "./public"});
+});
+
 app.get("/*", function (req, res) {
     res.sendFile("index.html", {root: "./public"});
 });
