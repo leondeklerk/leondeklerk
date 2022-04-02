@@ -9,7 +9,7 @@
     "@google-cloud/storage": "^5.17.0",
     "cookie-parser": "^1.4.6",
     "debug": "^4.3.3",
-    "express": "^4.17.2",
+    "express": "^4.17.3",
     "morgan": "^1.10.0",
     "node": "^17.7.2",
     "serve-favicon": "latest"
