@@ -5,8 +5,9 @@
 			<div
 				class="mt-12 mx-auto border bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-600 p-4 font-medium text-sm md:text-lg max-w-xl text-zinc-600 dark:text-zinc-300 text-center rounded-xl shadow-sm"
 			>
-				I'm Leon, a full-stack software engineer from the Netherlands 🇳🇱 🇪🇺. I build apps and other applications. Checkout my contact details
-				and apps below.
+				I'm Leon, a full-stack software engineer from the Netherlands <img src="/flags/nl.svg" class="inline rounded-sm w-5 mr-1" />
+				<img src="/flags/eu.svg" class="inline w-5 rounded-sm" />. I build apps and other applications. Checkout my contact details and apps
+				below.
 			</div>
 
 			<divider-component>Contact</divider-component>
