@@ -25,7 +25,7 @@
 			<divider-component>Apps</divider-component>
 
 			<div class="flex flex-col md:flex-row justify-center gap-2">
-				<div v-for="(app, index) in apps" :key="index" class="m-auto grow w-1/2 md:w-full">
+				<div v-for="(app, index) in apps" :key="index" class="m-auto grow w-2/3 md:w-full">
 					<a
 						:href="app.url"
 						class="text-zinc-600 dark:text-zinc-300 bg-white dark:bg-zinc-900 shadow-sm hover:text-orange-400/80 dark:hover:text-orange-400 rounded-xl flex items-center border border-slate-200 dark:border-zinc-600 hover:shadow-md duration-200 p-2 whitespace-nowrap"
