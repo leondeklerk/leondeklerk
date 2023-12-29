@@ -1,14 +1,4 @@
-# Vue 3 template
+# Leondeklerk.com
 
-A vue 3 template repository configured with the following dependencies:
-
--   Vite
--   Typescript
--   Eslint + Prettier
--   Pinia
--   Vue Router
--   Tailwindcss
--   Fontawesome (free)
--   husky (pre-commit lint/type-check)
--   Renovate
--   Lint/build action
+Repository containing the source code for my personal website.
+Based on my [vue template repository](https://github.com/leondeklerk/vue3-template)
