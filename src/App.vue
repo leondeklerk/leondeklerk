@@ -5,9 +5,15 @@
 			<div
 				class="mt-12 mx-auto border bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-600 p-4 font-medium text-sm md:text-lg max-w-xl text-zinc-600 dark:text-zinc-300 text-center rounded-xl shadow-sm"
 			>
-				I'm Leon, a full-stack software engineer from the Netherlands <img src="/flags/nl.svg" class="inline rounded-sm w-5 mr-1" />
-				<img src="/flags/eu.svg" class="inline w-5 rounded-sm" />. I build apps and other applications. Checkout my contact details and apps
-				below.
+				I'm Leon, a full-stack software engineer from the Netherlands
+				<img
+					src="/flags/nl.svg"
+					class="inline rounded-sm w-5 mr-1"
+				/>
+				<img
+					src="/flags/eu.svg"
+					class="inline w-5 rounded-sm"
+				/>. I build apps and other applications. Checkout my contact details and apps below.
 			</div>
 
 			<divider-component>Contact</divider-component>
@@ -27,12 +33,19 @@
 			<divider-component>Apps</divider-component>
 
 			<div class="flex flex-col md:flex-row justify-center gap-2">
-				<div v-for="(app, index) in apps" :key="index" class="m-auto grow w-full md:w-full">
+				<div
+					v-for="(app, index) in apps"
+					:key="index"
+					class="m-auto grow w-full md:w-full"
+				>
 					<a
 						:href="app.url"
 						class="text-zinc-600 dark:text-zinc-300 bg-white dark:bg-zinc-900 shadow-sm hover:text-orange-400/80 dark:hover:text-orange-400 rounded-xl flex items-center border border-slate-200 dark:border-zinc-600 hover:shadow-md duration-200 p-2 whitespace-nowrap"
 					>
-						<img :src="app.icon" class="rounded-xl lg:w-14 lg:h-14 w-10 h-10 border shadow-sm mr-2 md:mr-3 dark:border-zinc-600" />
+						<img
+							:src="app.icon"
+							class="rounded-xl lg:w-14 lg:h-14 w-10 h-10 border shadow-sm mr-2 md:mr-3 dark:border-zinc-600"
+						/>
 						<p class="">{{ app.title }}</p>
 					</a>
 				</div>
