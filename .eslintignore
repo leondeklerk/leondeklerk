@@ -1,6 +1,0 @@
-dist
-public/index.js
-.github
-.husky
-.vscode
-node_modules
