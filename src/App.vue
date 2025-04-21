@@ -68,6 +68,11 @@ const links = [
 		icon: "fa-regular fa-envelope",
 		text: "E-mail",
 	},
+	{
+		url: "https://www.linkedin.com/in/leon-de-klerk-2a91b728b/",
+		icon: "fa-brands fa-linkedin",
+		text: "LinkedIn",
+	},
 ];
 
 const apps = [
