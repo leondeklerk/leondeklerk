@@ -139,7 +139,7 @@ const apps = [
 	{
 		stores: [
 			{
-				url: "https://apps.apple.com/nl/app/scored-simpel-puntentellen/id6746389417",
+				url: "https://apps.apple.com/app/id6746389417",
 				icon: "fa-brands fa-apple",
 				name: "App Store",
 			},
