@@ -44,7 +44,7 @@
 				>
 					<a
 						v-if="app.stores.length === 1"
-						:href="app.stores[0].url"
+						:href="app.stores[0]?.url"
 						target="_blank"
 						class="text-zinc-600 dark:text-zinc-300 bg-white dark:bg-zinc-900 shadow-sm hover:text-orange-400/80 dark:hover:text-orange-400 rounded-xl flex items-center border border-slate-200 dark:border-zinc-600 hover:shadow-md duration-200 p-2 whitespace-nowrap"
 					>
