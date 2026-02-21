@@ -1,25 +1,51 @@
 <template>
-	<div
-		class="pb-2 max-w-4xl mx-auto"
-		@click="closeDropdowns"
+	<a
+		href="#main-content"
+		class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-zinc-700 focus:shadow-lg focus:ring-2 focus:ring-orange-400 dark:focus:bg-zinc-900 dark:focus:text-zinc-200"
 	>
-		<div class="flex flex-col mx-auto p-10 text-center">
-			<h1 class="uppercase pt-3 text-xl sm:text-4xl md:text-5xl text-zinc-600 dark:text-zinc-300">Leon de Klerk</h1>
+		{{ $t("skipToContent") }}
+	</a>
+
+	<div
+		role="toolbar"
+		:aria-label="$t('pageControls')"
+		class="fixed top-4 right-4 z-20 flex gap-2"
+	>
+		<LanguageSwitcher />
+		<ThemeToggle />
+	</div>
+
+	<main
+		id="main-content"
+		tabindex="-1"
+		class="pb-2 max-w-4xl mx-auto focus:outline-none"
+		@click="closeDropdowns"
+		@keydown.escape="closeDropdowns"
+	>
+		<header class="flex flex-col mx-auto px-10 pt-10 pb-4 text-center">
+			<h1 class="uppercase pt-3 text-xl sm:text-4xl md:text-5xl text-zinc-600 dark:text-zinc-300">{{ $t("heading") }}</h1>
 			<div
 				class="mt-12 mx-auto border bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-600 p-4 font-medium text-sm md:text-lg max-w-xl text-zinc-600 dark:text-zinc-300 text-center rounded-xl shadow-sm"
 			>
-				I'm Leon, a full-stack software engineer from the Netherlands
+				{{ $t("intro") }}
 				<img
 					src="/flags/nl.svg"
+					alt="Netherlands flag"
 					class="inline rounded-sm w-5 mr-1"
 				/>
 				<img
 					src="/flags/eu.svg"
+					alt="European Union flag"
 					class="inline w-5 rounded-sm"
-				/>. I build apps and other applications. Checkout my contact details and apps below.
+				/>{{ $t("introContinuation") }}
 			</div>
+		</header>
 
-			<divider-component>Contact</divider-component>
+		<section
+			:aria-label="$t('contact')"
+			class="flex flex-col mx-auto px-10 py-4 text-center"
+		>
+			<section-divider>{{ $t("contact") }}</section-divider>
 
 			<div class="flex justify-center gap-2">
 				<a
@@ -28,13 +54,19 @@
 					:href="link.url"
 					:aria-label="link.text"
 					target="_blank"
-					class="h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20 text-zinc-600 dark:text-zinc-300 bg-white dark:bg-zinc-900 shadow-sm hover:text-orange-400/80 dark:hover:text-orange-400 text-2xl sm:text-3xl rounded-xl flex items-center justify-center border border-slate-200 dark:border-zinc-600 hover:shadow-md duration-200"
+					rel="noopener noreferrer"
+					class="h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20 text-zinc-600 dark:text-zinc-300 bg-white dark:bg-zinc-900 shadow-sm hover:text-orange-400/80 dark:hover:text-orange-400 text-2xl sm:text-3xl rounded-xl flex items-center justify-center border border-slate-200 dark:border-zinc-600 hover:shadow-md duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
 				>
-					<i :class="link.icon" />
+					<font-awesome-icon :icon="link.icon" />
 				</a>
 			</div>
+		</section>
 
-			<divider-component>Apps</divider-component>
+		<section
+			:aria-label="$t('apps')"
+			class="flex flex-col mx-auto px-10 py-4 pb-10 text-center"
+		>
+			<section-divider>{{ $t("apps") }}</section-divider>
 
 			<div class="flex flex-col md:flex-row justify-center gap-2">
 				<div
@@ -46,13 +78,15 @@
 						v-if="app.stores.length === 1"
 						:href="app.stores[0]?.url"
 						target="_blank"
-						class="text-zinc-600 dark:text-zinc-300 bg-white dark:bg-zinc-900 shadow-sm hover:text-orange-400/80 dark:hover:text-orange-400 rounded-xl flex items-center border border-slate-200 dark:border-zinc-600 hover:shadow-md duration-200 p-2 whitespace-nowrap"
+						rel="noopener noreferrer"
+						class="text-zinc-600 dark:text-zinc-300 bg-white dark:bg-zinc-900 shadow-sm hover:text-orange-400/80 dark:hover:text-orange-400 rounded-xl flex items-center border border-slate-200 dark:border-zinc-600 hover:shadow-md duration-200 p-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
 					>
 						<img
 							:src="app.icon"
+							alt=""
 							class="rounded-xl lg:w-14 lg:h-14 w-10 h-10 border shadow-sm mr-2 md:mr-3 dark:border-zinc-600"
 						/>
-						<p class="">{{ app.title }}</p>
+						<span>{{ app.title }}</span>
 					</a>
 
 					<div
@@ -61,50 +95,63 @@
 						@click.stop
 					>
 						<button
-							class="w-full text-zinc-600 dark:text-zinc-300 bg-white dark:bg-zinc-900 shadow-sm hover:text-orange-400/80 dark:hover:text-orange-400 rounded-xl flex items-center justify-between border border-slate-200 dark:border-zinc-600 hover:shadow-md duration-200 p-2 whitespace-nowrap"
+							:aria-label="`${$t('showStore')} ${app.title}`"
+							:aria-expanded="openDropdown === index"
+							aria-haspopup="true"
+							class="w-full text-zinc-600 dark:text-zinc-300 bg-white dark:bg-zinc-900 shadow-sm hover:text-orange-400/80 dark:hover:text-orange-400 rounded-xl flex items-center justify-between border border-slate-200 dark:border-zinc-600 hover:shadow-md duration-200 p-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
 							@click="toggleDropdown(index)"
 						>
 							<div class="flex items-center">
 								<img
 									:src="app.icon"
+									alt=""
 									class="rounded-xl lg:w-14 lg:h-14 w-10 h-10 border shadow-sm mr-2 md:mr-3 dark:border-zinc-600"
 								/>
-								<p class="">{{ app.title }}</p>
+								<span>{{ app.title }}</span>
 							</div>
-							<i
-								class="fa-solid fa-chevron-down text-xs ml-2 transition-transform duration-200"
+							<font-awesome-icon
+								:icon="['fas', 'chevron-down']"
+								class="text-xs ml-2 transition-transform duration-200"
 								:class="{ 'rotate-180': openDropdown === index }"
-							></i>
+							/>
 						</button>
 
-						<div
+						<ul
 							v-if="openDropdown === index"
+							role="list"
 							class="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-600 rounded-xl shadow-lg z-10"
 						>
-							<a
+							<li
 								v-for="(store, storeIndex) in app.stores"
 								:key="storeIndex"
-								:href="store.url"
-								target="_blank"
-								class="flex items-center p-3 hover:bg-slate-50 dark:hover:bg-zinc-800 first:rounded-t-xl last:rounded-b-xl text-zinc-600 dark:text-zinc-300 hover:text-orange-400/80 dark:hover:text-orange-400 transition-colors duration-200"
+								role="listitem"
 							>
-								<i
-									:class="store.icon"
-									class="mr-3 text-lg w-5"
-								></i>
-								<span>{{ store.name }}</span>
-							</a>
-						</div>
+								<a
+									:href="store.url"
+									target="_blank"
+									rel="noopener noreferrer"
+									class="flex items-center p-3 hover:bg-slate-50 dark:hover:bg-zinc-800 first:rounded-t-xl last:rounded-b-xl text-zinc-600 dark:text-zinc-300 hover:text-orange-400/80 dark:hover:text-orange-400 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-inset"
+								>
+									<font-awesome-icon
+										:icon="store.icon"
+										class="mr-3 text-lg w-5"
+									/>
+									<span>{{ store.name }}</span>
+								</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		</section>
+	</main>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import DividerComponent from "./components/DividerComponent.vue";
+import SectionDivider from "./components/SectionDivider.vue";
+import ThemeToggle from "./components/ThemeToggle.vue";
+import LanguageSwitcher from "./components/LanguageSwitcher.vue";
 
 const openDropdown = ref<number | null>(null);
 
@@ -117,35 +164,53 @@ const closeDropdowns = () => {
 	openDropdown.value = null;
 };
 
-const links = [
+interface Link {
+	url: string;
+	icon: [string, string];
+	text: string;
+}
+
+interface AppStore {
+	url: string;
+	icon: [string, string];
+	name: string;
+}
+
+interface AppEntry {
+	stores: AppStore[];
+	icon: string;
+	title: string;
+}
+
+const links: Link[] = [
 	{
 		url: "https://github.com/leondeklerk",
-		icon: "fa-brands fa-github",
+		icon: ["fab", "github"],
 		text: "GitHub",
 	},
 	{
 		url: "mailto:contact@leondeklerk.com",
-		icon: "fa-regular fa-envelope",
+		icon: ["far", "envelope"],
 		text: "E-mail",
 	},
 	{
 		url: "https://www.linkedin.com/in/leon-de-klerk-2a91b728b/",
-		icon: "fa-brands fa-linkedin",
+		icon: ["fab", "linkedin"],
 		text: "LinkedIn",
 	},
 ];
 
-const apps = [
+const apps: AppEntry[] = [
 	{
 		stores: [
 			{
 				url: "https://apps.apple.com/app/id6746389417",
-				icon: "fa-brands fa-apple",
+				icon: ["fab", "apple"],
 				name: "App Store",
 			},
 			{
 				url: "https://play.google.com/store/apps/details?id=com.leondeklerk.scored",
-				icon: "fa-brands fa-google-play",
+				icon: ["fab", "google-play"],
 				name: "Google Play",
 			},
 		],
@@ -156,7 +221,7 @@ const apps = [
 		stores: [
 			{
 				url: "https://play.google.com/store/apps/details?id=com.leondeklerk.wheremybike",
-				icon: "fa-brands fa-google-play",
+				icon: ["fab", "google-play"],
 				name: "Google Play",
 			},
 		],
@@ -167,7 +232,7 @@ const apps = [
 		stores: [
 			{
 				url: "https://play.google.com/store/apps/details?id=nl.leontheclerk.gyroblock",
-				icon: "fa-brands fa-google-play",
+				icon: ["fab", "google-play"],
 				name: "Google Play",
 			},
 		],
@@ -178,7 +243,7 @@ const apps = [
 		stores: [
 			{
 				url: "https://play.google.com/store/apps/details?id=nl.leontheclerk.when2leave",
-				icon: "fa-brands fa-google-play",
+				icon: ["fab", "google-play"],
 				name: "Google Play",
 			},
 		],

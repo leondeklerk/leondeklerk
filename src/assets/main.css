@@ -1,5 +1,1 @@
-@import "@fortawesome/fontawesome-free/css/fontawesome.css" layer(vendor);
-@import "@fortawesome/fontawesome-free/css/brands.css" layer(vendor);
-@import "@fortawesome/fontawesome-free/css/solid.css" layer(vendor);
-
 @import "./base.css";
