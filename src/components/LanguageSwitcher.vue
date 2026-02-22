@@ -9,7 +9,7 @@
 			:alt="locale === 'en' ? 'Switch to Dutch' : 'Switch to English'"
 			class="w-5 rounded-sm"
 		/>
-		<span class="text-xs font-semibold text-zinc-600 dark:text-zinc-300">{{ locale === "en" ? "NL" : "EN" }}</span>
+		<span class="text-xs font-semibold text-zinc-600 dark:text-zinc-300 hidden md:block">{{ locale === "en" ? "NL" : "EN" }}</span>
 	</button>
 </template>
 

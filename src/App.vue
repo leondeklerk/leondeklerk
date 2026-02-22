@@ -9,7 +9,7 @@
 	<div
 		role="toolbar"
 		:aria-label="$t('pageControls')"
-		class="fixed top-4 right-4 z-20 flex gap-2"
+		class="fixed sm:absolute bottom-4 sm:top-4 right-4 sm:right-4 z-20 flex gap-2"
 	>
 		<LanguageSwitcher />
 		<ThemeToggle />
@@ -18,12 +18,12 @@
 	<main
 		id="main-content"
 		tabindex="-1"
-		class="pb-2 max-w-4xl mx-auto focus:outline-none"
+		class="pb-8 max-w-4xl mx-auto focus:outline-none"
 		@click="closeDropdowns"
 		@keydown.escape="closeDropdowns"
 	>
-		<header class="flex flex-col mx-auto px-10 pt-10 pb-4 text-center">
-			<h1 class="uppercase pt-3 text-xl sm:text-4xl md:text-5xl text-zinc-600 dark:text-zinc-300">{{ $t("heading") }}</h1>
+		<header class="flex flex-col mx-auto px-10 pt-4 pb-4 text-center">
+			<h1 class="uppercase pt-3 text-3xl sm:text-4xl md:text-5xl text-zinc-600 dark:text-zinc-300">{{ $t("heading") }}</h1>
 			<div
 				class="mt-12 mx-auto border bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-600 p-4 font-medium text-sm md:text-lg max-w-xl text-zinc-600 dark:text-zinc-300 text-center rounded-xl shadow-sm"
 			>
